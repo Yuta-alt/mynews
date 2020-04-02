@@ -20,8 +20,12 @@ Route::get('/', function () {
 // Route::get('XXX', 'Admin\AAA@bbb');
 
 // PHP課題09-4
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
   Route::get('news/create', 'Admin\NewsController@add')->middleware('auth'); 
+  Route::post('news/create', 'Admin\NewsController@create');
+ 
+  //PHP課題13-3
+  Route::post('profile/create', 'Admin\ProfileController@create');
   //
   Route::get('profile/create', 'Admin\ProfileController@add')->middleware('auth'); 
     // Route::filter('guest', function(){
@@ -30,6 +34,9 @@ Route::group(['prefix' => 'admin'], function(){
     //   }
     // });
   Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');
+  
+  //PHP課題13-6
+  Route::post('profile/edit', 'Admin\ProfileController@update');
 });
 
 Auth::routes();
