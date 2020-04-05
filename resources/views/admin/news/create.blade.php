@@ -22,13 +22,13 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">本文</label>
+                        <label class="col-md-2" for="body">本文</label>
                         <div class="col-md-10">
                             <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">画像</label>
+                        <label class="col-md-2" for="title">画像</label>
                         <div class="col-md-10">
                             <input type="file" class="form-control-file" name="image">
                         </div>
