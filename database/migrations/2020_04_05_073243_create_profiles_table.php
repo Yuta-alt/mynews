@@ -19,7 +19,6 @@ class CreateProfilesTable extends Migration
             $table->string('gender');
             $table->string('hobby'); 
             $table->string('introduction'); 
-            // $table->string('image_path')->nullable();  // 画像のパスを保存するカラム
             $table->timestamps();
         });
     }
