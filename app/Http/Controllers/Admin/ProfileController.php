@@ -63,10 +63,10 @@ class ProfileController extends Controller
       // 該当するデータを上書きして保存する
       $profile->fill($profile_form)->save();
       
-      $profilehistory = new ProfileHistory;
-      $profilehistory->profile_id = $profile->id;
-      $profilehistory->edited_at = Carbon::now();
-      $profilehistory->save();
+      $profile_histories = new ProfileHistory;
+      $profile_histories->profile_id = $profile->id;
+      $profile_histories->edited_at = Carbon::now();
+      $profile_histories->save();
 
       return redirect('admin/profile');
   }
