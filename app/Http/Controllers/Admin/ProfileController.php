@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Profiles;
+use App\Profile;
 
 use App\ProfileHistory;
 
@@ -21,8 +21,8 @@ class ProfileController extends Controller
     public function create(Request $request)
   {
       // Varidationを行う
-      $this->validate($request, Profiles::$rules);
-      $profile = new Profiles;
+      $this->validate($request, Profile::$rules);
+      $profile = new Profile;
       $form = $request->all();
 
       unset($form['_token']);
@@ -36,7 +36,7 @@ class ProfileController extends Controller
     
     public function edit(Request $request)
   {
-      $profile = Profiles::find($request->id);
+      $profile = Profile::find($request->id);
       if (empty($profile)) {
         abort(404);    
       }
@@ -46,9 +46,9 @@ class ProfileController extends Controller
     public function update(Request $request)
   {
       // Validationをかける
-      $this->validate($request, Profiles::$rules);
+      $this->validate($request, Profile::$rules);
       // News Modelからデータを取得する
-      $profile = Profiles::find($request->id);
+      $profile = Profile::find($request->id);
       // 送信されてきたフォームデータを格納する
       $profile_form = $request->all();
       if (isset($profile_form['image'])) {
@@ -78,10 +78,10 @@ class ProfileController extends Controller
       $cond_title = $request->cond_title;
       if ($cond_title != '') {
           // 検索されたら検索結果を取得する
-          $posts = Profiles::where('title', $cond_title)->get();
+          $posts = Profile::where('title', $cond_title)->get();
       } else {
           // それ以外はすべてのニュースを取得する
-          $posts = Profiles::all();
+          $posts = Profile::all();
       }
       return view('admin.profile.index', ['posts' => $posts, 'cond_title' => $cond_title]);
   }
